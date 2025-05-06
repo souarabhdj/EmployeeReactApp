@@ -42,7 +42,7 @@ const Employee = () => {
 
   const fetchStates = async () => {
     try {
-      const response = await axios.get("https://localhost:7260/api/Employee/statedropdown");
+      const response = await axios.get("http://localhost:5000/api/Employee/statedropdown");
       setStates(response.data);
     } catch (error) {
       console.error("Error fetching states:", error);
@@ -51,7 +51,7 @@ const Employee = () => {
 
   const fetchEmployeeList = async () => {
     try {
-      const response = await axios.get("https://localhost:7260/api/Employee/EmployeeList");
+      const response = await axios.get("http://localhost:5000/api/Employee/EmployeeList");
       setEmployeeList(response.data);
     } catch (error) {
       console.error("Error fetching employee list:", error);
@@ -157,12 +157,12 @@ const Employee = () => {
     try {
       if (isEditMode) {
         await axios.put(
-          `https://localhost:7260/api/Employee/UpdateEmployee/${employeeData.id}`,
+          `http://localhost:5000/api/Employee/UpdateEmployee/${employeeData.id}`,
           payload
         );
         alert("Employee updated successfully!");
       } else {
-        await axios.post("https://localhost:7260/api/Employee/CreateEmployee", payload);
+        await axios.post("http://localhost:5000/api/Employee/CreateEmployee", payload);
         alert("Employee saved successfully!");
       }
       fetchEmployeeList();
@@ -192,7 +192,7 @@ const Employee = () => {
   const handleDelete = async (empId) => {
     if (!window.confirm("Are you sure you want to delete this employee?")) return;
     try {
-      await axios.delete(`https://localhost:7260/api/Employee/${empId}`);
+      await axios.delete(`http://localhost:5000/api/Employee/${empId}`);
       alert("Employee deleted successfully!");
       fetchEmployeeList();
     } catch (error) {
